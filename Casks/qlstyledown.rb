@@ -18,19 +18,23 @@ cask "qlstyledown" do
                    args: ["-sf",
                           "#{appdir}/qlstyledown.app/Contents/MacOS/qlstyledown-cli",
                           "#{HOMEBREW_PREFIX}/bin/qlstyledown"]
-    # 기본 테마 설치
+    # 기본 테마 설치 (이미 있으면 덮어쓰지 않음)
+    themes_dir = "#{Dir.home}/.qlstyledown/themes"
     system_command "/bin/mkdir",
-                   args: ["-p", "#{Dir.home}/.qlstyledown/themes"]
-    # default.css → github.css로 복사
-    system_command "/bin/cp",
-                   args: ["-n",
-                          "#{appdir}/qlstyledown.app/Contents/Resources/default.css",
-                          "#{Dir.home}/.qlstyledown/themes/github.css"]
+                   args: ["-p", themes_dir]
+    # default.css → github.css
+    github_dest = "#{themes_dir}/github.css"
+    unless File.exist?(github_dest)
+      system_command "/bin/cp",
+                     args: ["#{appdir}/qlstyledown.app/Contents/Resources/default.css", github_dest]
+    end
     %w[lapis minimal monokai nord solarized-light tailwind warp-gradient].each do |theme|
       src = "#{appdir}/qlstyledown.app/Contents/Resources/#{theme}.css"
-      dest = "#{Dir.home}/.qlstyledown/themes/#{theme}.css"
-      system_command "/bin/cp",
-                     args: ["-n", src, dest] if File.exist?(src)
+      dest = "#{themes_dir}/#{theme}.css"
+      unless File.exist?(dest)
+        system_command "/bin/cp",
+                       args: [src, dest] if File.exist?(src)
+      end
     end
     # 앱 실행 (Extension 등록 + 글로벌 CSS 초기화)
     system_command "/usr/bin/open",
