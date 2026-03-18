@@ -2,7 +2,7 @@ cask "qlstyledown" do
   version "1.0.0"
   sha256 "e92d032fad65d1a7aadf37d8612a07caa5679e33fce5c805a2fc9a87b9b0a440"
 
-  url "https://github.com/oh-research/QLStyledown/releases/download/v#{version}/qlstyledown-#{version}.dmg"
+  url "https://github.com/oh-research/QLStyledown/releases/download/v#{version}/qlstyledown-1.0.dmg"
   name "qlstyledown"
   desc "CSS-customizable Markdown renderer for Quick Look"
   homepage "https://github.com/oh-research/QLStyledown"
