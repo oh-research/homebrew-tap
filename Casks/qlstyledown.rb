@@ -44,7 +44,4 @@ cask "qlstyledown" do
 
   zap trash: "~/.qlstyledown"
 
-  caveats <<~EOS
-    앱을 한 번 실행하면 Quick Look Extension이 등록됩니다.
-  EOS
 end
