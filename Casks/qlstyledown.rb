@@ -18,6 +18,16 @@ cask "qlstyledown" do
                    args: ["-sf",
                           "#{appdir}/qlstyledown.app/Contents/MacOS/qlstyledown-cli",
                           "#{HOMEBREW_PREFIX}/bin/qlstyledown"]
+    # 기본 테마 설치
+    system_command "/bin/mkdir",
+                   args: ["-p", "#{Dir.home}/.qlstyledown/themes"]
+    %w[github lapis minimal monokai nord solarized-light tailwind warp-gradient].each do |theme|
+      src = "#{appdir}/qlstyledown.app/Contents/Resources/#{theme}.css"
+      dest = "#{Dir.home}/.qlstyledown/themes/#{theme}.css"
+      system_command "/bin/cp",
+                     args: ["-n", src, dest] if File.exist?(src)
+    end
+    # 앱 실행 (Extension 등록 + 글로벌 CSS 초기화)
     system_command "/usr/bin/open",
                    args: ["#{appdir}/qlstyledown.app"]
     system_command "/usr/bin/pluginkit",
