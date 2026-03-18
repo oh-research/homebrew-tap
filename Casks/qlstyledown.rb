@@ -1,6 +1,6 @@
 cask "qlstyledown" do
   version "1.0.0"
-  sha256 "e92d032fad65d1a7aadf37d8612a07caa5679e33fce5c805a2fc9a87b9b0a440"
+  sha256 "a8e874db4b2bac0605d431b93d8efc044e3cc46fb0f7e484f3c3e369e6eb0165"
 
   url "https://github.com/oh-research/QLStyledown/releases/download/v#{version}/qlstyledown-#{version}.dmg"
   name "qlstyledown"
@@ -12,23 +12,25 @@ cask "qlstyledown" do
   app "qlstyledown.app"
 
   postflight do
-    system_command "/usr/bin/ln",
+    system_command "/usr/bin/xattr",
+                   args: ["-cr", "#{appdir}/qlstyledown.app"]
+    system_command "/bin/ln",
                    args: ["-sf",
                           "#{appdir}/qlstyledown.app/Contents/MacOS/qlstyledown-cli",
-                          "/usr/local/bin/qlstyledown"]
+                          "#{HOMEBREW_PREFIX}/bin/qlstyledown"]
+    system_command "/usr/bin/open",
+                   args: ["#{appdir}/qlstyledown.app"]
   end
 
   uninstall script: {
               executable: "/usr/bin/pluginkit",
               args:       ["-e", "ignore", "-i", "com.ohresearch.qlstyledown.qlstyledownPreview"],
             },
-            delete: "/usr/local/bin/qlstyledown"
+            delete: "#{HOMEBREW_PREFIX}/bin/qlstyledown"
 
   zap trash: "~/.qlstyledown"
 
   caveats <<~EOS
-    서명되지 않은 앱이므로 최초 실행 전 격리 플래그를 제거해야 합니다:
-      xattr -cr /Applications/qlstyledown.app
     앱을 한 번 실행하면 Quick Look Extension이 등록됩니다.
   EOS
 end
