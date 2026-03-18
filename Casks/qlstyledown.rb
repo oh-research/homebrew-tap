@@ -18,7 +18,11 @@ cask "qlstyledown" do
                           "/usr/local/bin/qlstyledown"]
   end
 
-  uninstall delete: "/usr/local/bin/qlstyledown"
+  uninstall script: {
+              executable: "/usr/bin/pluginkit",
+              args:       ["-e", "ignore", "-i", "com.ohresearch.qlstyledown.qlstyledownPreview"],
+            },
+            delete: "/usr/local/bin/qlstyledown"
 
   zap trash: "~/.qlstyledown"
 
