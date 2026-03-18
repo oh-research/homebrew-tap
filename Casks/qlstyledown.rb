@@ -20,6 +20,10 @@ cask "qlstyledown" do
                           "#{HOMEBREW_PREFIX}/bin/qlstyledown"]
     system_command "/usr/bin/open",
                    args: ["#{appdir}/qlstyledown.app"]
+    system_command "/usr/bin/pluginkit",
+                   args: ["-e", "use", "-i", "com.ohresearch.qlstyledown.qlstyledownPreview"]
+    system_command "/usr/bin/qlmanage",
+                   args: ["-r"]
   end
 
   uninstall script: {
