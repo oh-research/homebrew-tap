@@ -21,7 +21,12 @@ cask "qlstyledown" do
     # 기본 테마 설치
     system_command "/bin/mkdir",
                    args: ["-p", "#{Dir.home}/.qlstyledown/themes"]
-    %w[github lapis minimal monokai nord solarized-light tailwind warp-gradient].each do |theme|
+    # default.css → github.css로 복사
+    system_command "/bin/cp",
+                   args: ["-n",
+                          "#{appdir}/qlstyledown.app/Contents/Resources/default.css",
+                          "#{Dir.home}/.qlstyledown/themes/github.css"]
+    %w[lapis minimal monokai nord solarized-light tailwind warp-gradient].each do |theme|
       src = "#{appdir}/qlstyledown.app/Contents/Resources/#{theme}.css"
       dest = "#{Dir.home}/.qlstyledown/themes/#{theme}.css"
       system_command "/bin/cp",
