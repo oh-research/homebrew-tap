@@ -39,6 +39,8 @@ cask "qlstyledown" do
     # 앱 실행 (Extension 등록 + 글로벌 CSS 초기화)
     system_command "/usr/bin/open",
                    args: ["#{appdir}/qlstyledown.app"]
+    system_command "/bin/sleep",
+                   args: ["3"]
     system_command "/usr/bin/pluginkit",
                    args: ["-e", "use", "-i", "com.ohresearch.qlstyledown.qlstyledownPreview"]
     system_command "/usr/bin/qlmanage",
