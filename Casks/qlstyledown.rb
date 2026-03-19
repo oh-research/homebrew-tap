@@ -47,10 +47,16 @@ cask "qlstyledown" do
                    args: ["-r"]
   end
 
-  uninstall script: {
-              executable: "/usr/bin/pluginkit",
-              args:       ["-e", "ignore", "-i", "com.ohresearch.qlstyledown.qlstyledownPreview"],
-            },
+  uninstall script: [
+              {
+                executable: "/usr/bin/pluginkit",
+                args:       ["-e", "ignore", "-i", "com.ohresearch.qlstyledown.qlstyledownPreview"],
+              },
+              {
+                executable: "/usr/bin/pluginkit",
+                args:       ["-r", "#{appdir}/qlstyledown.app/Contents/PlugIns/qlstyledownPreview.appex"],
+              },
+            ],
             delete: "#{HOMEBREW_PREFIX}/bin/qlstyledown"
 
   zap trash: "~/.qlstyledown"
