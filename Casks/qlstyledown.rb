@@ -10,14 +10,11 @@ cask "qlstyledown" do
   depends_on macos: ">= :ventura"
 
   app "qlstyledown.app"
+  binary "#{appdir}/qlstyledown.app/Contents/MacOS/qlstyledown-cli", target: "qlstyledown"
 
   postflight do
     system_command "/usr/bin/xattr",
                    args: ["-cr", "#{appdir}/qlstyledown.app"]
-    system_command "/bin/ln",
-                   args: ["-sf",
-                          "#{appdir}/qlstyledown.app/Contents/MacOS/qlstyledown-cli",
-                          "#{HOMEBREW_PREFIX}/bin/qlstyledown"]
     # 기본 테마 설치 (이미 있으면 덮어쓰지 않음)
     themes_dir = "#{Dir.home}/.qlstyledown/themes"
     system_command "/bin/mkdir",
@@ -50,12 +47,14 @@ cask "qlstyledown" do
   uninstall_preflight do
     system_command "/usr/bin/pluginkit",
                    args: ["-e", "ignore", "-i", "com.ohresearch.qlstyledown.qlstyledownPreview"]
-    system_command "/usr/bin/pluginkit",
-                   args: ["-r", "/Applications/qlstyledown.app/Contents/PlugIns/qlstyledownPreview.appex"]
-    system_command "/bin/rm",
-                   args: ["-f", "#{HOMEBREW_PREFIX}/bin/qlstyledown"]
   end
 
-  zap trash: "~/.qlstyledown"
-
+  zap trash: [
+    "~/.qlstyledown",
+    "~/Library/Application Scripts/com.ohresearch.qlstyledown",
+    "~/Library/Application Scripts/com.ohresearch.qlstyledown.qlstyledownPreview",
+    "~/Library/Containers/com.ohresearch.qlstyledown",
+    "~/Library/Containers/com.ohresearch.qlstyledown.qlstyledownPreview",
+    "~/Library/Group Containers/group.com.ohresearch.qlstyledown",
+  ]
 end
