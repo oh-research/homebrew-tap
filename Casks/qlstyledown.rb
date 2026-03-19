@@ -1,13 +1,13 @@
 cask "qlstyledown" do
   version "1.0.0"
-  sha256 "0f9021974bac5f05f8c90ea9cb4cd402dc6ee9f14a81850ea7ad300d0c886d8c"
+  sha256 "db54518928cf8f04f3ec571211f9f8189b5a7d44ce7cf2075f7bd4d7e41f3386"
 
   url "https://github.com/oh-research/QLStyledown/releases/download/v#{version}/qlstyledown-#{version}.dmg"
   name "qlstyledown"
   desc "CSS-customizable Markdown renderer for Quick Look"
   homepage "https://github.com/oh-research/QLStyledown"
 
-  depends_on macos: ">= :ventura"
+  depends_on macos: ">= :tahoe"
 
   app "qlstyledown.app"
   binary "#{appdir}/qlstyledown.app/Contents/MacOS/qlstyledown-cli", target: "qlstyledown"
