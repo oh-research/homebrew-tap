@@ -31,9 +31,9 @@ cask "qlstyledown" do
     %w[lapis minimal monokai nord solarized-light tailwind warp-gradient].each do |theme|
       src = "#{appdir}/qlstyledown.app/Contents/Resources/#{theme}.css"
       dest = "#{themes_dir}/#{theme}.css"
-      unless File.exist?(dest)
+      if File.exist?(src) && !File.exist?(dest)
         system_command "/bin/cp",
-                       args: [src, dest] if File.exist?(src)
+                       args: [src, dest]
       end
     end
     # 앱 실행 (Extension 등록 + 글로벌 CSS 초기화)
