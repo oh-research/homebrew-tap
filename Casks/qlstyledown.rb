@@ -1,6 +1,6 @@
 cask "qlstyledown" do
-  version "1.0.0"
-  sha256 "006c22759b15e407e27d1c350a10c2edb35f97b05d8cf486034355185b9ad03b"
+  version "1.0.1"
+  sha256 "99c6586943dbf1d2644fba98f68a5dd30d25de7085399f5bf0c0adbff026cd02"
 
   url "https://github.com/oh-research/QLStyledown/releases/download/v#{version}/qlstyledown-#{version}.dmg"
   name "qlstyledown"
@@ -14,7 +14,7 @@ cask "qlstyledown" do
 
   postflight do
     system_command "/usr/bin/xattr",
-                   args: ["-cr", "#{appdir}/qlstyledown.app"]
+                   args: ["-dr", "com.apple.quarantine", "#{appdir}/qlstyledown.app"]
     # 기본 테마 설치 (이미 있으면 덮어쓰지 않음)
     themes_dir = "#{Dir.home}/.qlstyledown/themes"
     system_command "/bin/mkdir",
