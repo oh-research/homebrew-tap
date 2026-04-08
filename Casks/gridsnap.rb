@@ -1,6 +1,6 @@
 cask "gridsnap" do
-  version "1.0.1"
-  sha256 "b6e76876a73f4656a6627206cd0afecb8221e12f904d89f26b2d4660a369ca01"
+  version "1.0.3"
+  sha256 "2d2aeaa9f74b61de9a7ac774f2975e1503ec8f3ce6c706651f9d21621c86de33"
 
   url "https://github.com/oh-research/GridSnap/releases/download/v#{version}/gridsnap-#{version}.dmg"
   name "GridSnap"
