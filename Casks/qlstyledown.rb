@@ -1,6 +1,6 @@
 cask "qlstyledown" do
   version "1.0.2"
-  sha256 "b417abb143c00f9a0bf4acb092407d145ef6c73dadadb5d8007785b0301c5344"
+  sha256 "b3cdff2934f736e861f6e4d1a545139e2d057b29f2368f0f148b7043ce286597"
 
   url "https://github.com/oh-research/QLStyledown/releases/download/v#{version}/qlstyledown-#{version}.dmg"
   name "qlstyledown"
