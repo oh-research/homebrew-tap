@@ -1,6 +1,6 @@
 cask "qlstyledown" do
-  version "1.0.1"
-  sha256 "defa6ee1b6bd286f311ca15e960966264df62e9745de75375ad83f0a34f28add"
+  version "1.0.2"
+  sha256 "df787a01ffa9bf07cdcb795b5952cc1ae3dcd325d23d26dd545d2748b5c1051d"
 
   url "https://github.com/oh-research/QLStyledown/releases/download/v#{version}/qlstyledown-#{version}.dmg"
   name "qlstyledown"
@@ -9,12 +9,12 @@ cask "qlstyledown" do
 
   depends_on macos: ">= :tahoe"
 
-  app "qlstyledown.app"
-  binary "#{appdir}/qlstyledown.app/Contents/MacOS/qlstyledown-cli", target: "qlstyledown"
+  app "QLStyledown.app"
+  binary "#{appdir}/QLStyledown.app/Contents/MacOS/qlstyledown-cli", target: "qlstyledown"
 
   postflight do
     system_command "/usr/bin/xattr",
-                   args: ["-dr", "com.apple.quarantine", "#{appdir}/qlstyledown.app"]
+                   args: ["-dr", "com.apple.quarantine", "#{appdir}/QLStyledown.app"]
     # 기본 테마 설치 (이미 있으면 덮어쓰지 않음)
     themes_dir = "#{Dir.home}/.qlstyledown/themes"
     system_command "/bin/mkdir",
@@ -23,10 +23,10 @@ cask "qlstyledown" do
     github_dest = "#{themes_dir}/github.css"
     unless File.exist?(github_dest)
       system_command "/bin/cp",
-                     args: ["#{appdir}/qlstyledown.app/Contents/Resources/default.css", github_dest]
+                     args: ["#{appdir}/QLStyledown.app/Contents/Resources/default.css", github_dest]
     end
     %w[lapis minimal monokai nord solarized-light tailwind warp-gradient].each do |theme|
-      src = "#{appdir}/qlstyledown.app/Contents/Resources/#{theme}.css"
+      src = "#{appdir}/QLStyledown.app/Contents/Resources/#{theme}.css"
       dest = "#{themes_dir}/#{theme}.css"
       if File.exist?(src) && !File.exist?(dest)
         system_command "/bin/cp",
@@ -35,7 +35,7 @@ cask "qlstyledown" do
     end
     # 앱 실행 (Extension 등록 + 글로벌 CSS 초기화)
     system_command "/usr/bin/open",
-                   args: ["#{appdir}/qlstyledown.app"]
+                   args: ["#{appdir}/QLStyledown.app"]
     system_command "/bin/sleep",
                    args: ["3"]
     system_command "/usr/bin/pluginkit",
