@@ -1,6 +1,6 @@
 cask "screendial" do
-  version "0.1.0"
-  sha256 "bb784fe59b002011fd64780f1904da1cea80da348a7e546a9e4f6382580ee80e"
+  version "1.0.1"
+  sha256 "0739850ab855ad85d29abe619cf1712ed48202379ad9cd579ea78b0349d12635"
 
   url "https://github.com/oh-research/ScreenDial/releases/download/v#{version}/screendial-#{version}.dmg"
   name "ScreenDial"
