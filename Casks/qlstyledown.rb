@@ -1,6 +1,6 @@
 cask "qlstyledown" do
   version "1.0.3"
-  sha256 "cca6cb806516e88cd1e3216b5eecbb079a50c792fcb43406821101332b511bc1"
+  sha256 "62a926685b8bd49d986716efdd48e0582f9bd8337821f0476d665c0157b37d79"
 
   url "https://github.com/oh-research/QLStyledown/releases/download/v#{version}/qlstyledown-#{version}.dmg"
   name "qlstyledown"
@@ -33,6 +33,10 @@ cask "qlstyledown" do
                        args: [src, dest]
       end
     end
+    # Force LaunchServices to register the app and its UTI declarations.
+    # Required on macOS 15 — `open` alone does not always trigger UTI registration on first install.
+    system_command "/System/Library/Frameworks/CoreServices.framework/Frameworks/LaunchServices.framework/Support/lsregister",
+                   args: ["-f", "#{appdir}/QLStyledown.app"]
     # 앱 실행 (Extension 등록 + 글로벌 CSS 초기화)
     system_command "/usr/bin/open",
                    args: ["#{appdir}/QLStyledown.app"]
@@ -42,6 +46,8 @@ cask "qlstyledown" do
                    args: ["-e", "use", "-i", "com.ohresearch.qlstyledown.qlstyledownPreview"]
     system_command "/usr/bin/qlmanage",
                    args: ["-r"]
+    system_command "/usr/bin/qlmanage",
+                   args: ["-r", "cache"]
   end
 
   uninstall_preflight do
