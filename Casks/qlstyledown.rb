@@ -7,7 +7,7 @@ cask "qlstyledown" do
   desc "CSS-customizable Markdown renderer for Quick Look"
   homepage "https://github.com/oh-research/QLStyledown"
 
-  depends_on macos: ">= :tahoe"
+  depends_on macos: ">= :sequoia"
 
   app "QLStyledown.app"
   binary "#{appdir}/QLStyledown.app/Contents/MacOS/qlstyledown-cli", target: "qlstyledown"
