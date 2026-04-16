@@ -1,6 +1,6 @@
 cask "sniq" do
-  version "1.1.0"
-  sha256 "8700faa63fe473ec2fe805ce18949c4728cb7286fd5ee53f198015a62268849d"
+  version "1.2.0"
+  sha256 "20842ea705b044be89c5f0de45b565c08f43e49ed26185c33aee23200ee96ea5"
 
   url "https://github.com/oh-research/Sniq/releases/download/v#{version}/sniq-#{version}.dmg"
   name "Sniq"
