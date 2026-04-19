@@ -1,6 +1,6 @@
 cask "quickopen" do
   version "1.0.3"
-  sha256 "78d72908210dbd5e30409db1e2126798d11d4dfe99908ea4aa7a52a2f5d88144"
+  sha256 "2c742de0509ea5bbc533185d3a0044d107c8e2c34f94eafbc4dc972db19456d5"
 
   url "https://github.com/oh-research/QuickOpen/releases/download/v#{version}/quickopen-#{version}.dmg"
   name "QuickOpen"
