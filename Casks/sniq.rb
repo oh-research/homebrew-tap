@@ -7,7 +7,7 @@ cask "sniq" do
   desc "Snap windows to a custom grid with modifier-key drag"
   homepage "https://github.com/oh-research/Sniq"
 
-  depends_on macos: ">= :sequoia"
+  depends_on macos: :sequoia
 
   app "Sniq.app"
 

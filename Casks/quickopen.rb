@@ -7,7 +7,7 @@ cask "quickopen" do
   desc "Open Finder files and folders in any app with shortcuts, clicks, or gestures"
   homepage "https://github.com/oh-research/QuickOpen"
 
-  depends_on macos: ">= :sonoma"
+  depends_on macos: :sonoma
 
   app "QuickOpen.app"
 

@@ -7,7 +7,7 @@ cask "screendial" do
   desc "One-click display presets for brightness, color temperature, and appearance mode"
   homepage "https://github.com/oh-research/ScreenDial"
 
-  depends_on macos: ">= :sequoia"
+  depends_on macos: :sequoia
 
   app "ScreenDial.app"
 
